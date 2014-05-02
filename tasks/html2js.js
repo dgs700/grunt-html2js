@@ -71,10 +71,15 @@ module.exports = function(grunt) {
     var doubleIndent = indentString + indentString;
     var strict = (useStrict) ? indentString + quoteChar + 'use strict' + quoteChar + ';\n' : '';
 
-    var module = 'angular.module(' + quoteChar + moduleName +
-      quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', function($templateCache) ' +
-      '{\n' + strict + indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar + ',\n' + doubleIndent  + quoteChar +  content +
-       quoteChar + ');\n}]);\n';
+    var module =
+        'var tpl = ' +
+        quoteChar +
+        content +
+        quoteChar +
+        ';'
+
+    return module;
+  };
 
     return module;
   };
